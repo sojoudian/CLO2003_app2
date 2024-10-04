@@ -13,6 +13,10 @@ type Message struct {
 }
 
 func getHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		return
+	}
 	fmt.Fprintf(w, "Welcome to the Go API\n")
 }
 func postHandler(w http.ResponseWriter, r *http.Request) {
